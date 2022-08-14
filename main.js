@@ -5,7 +5,7 @@ const video_player = document.querySelector("#video_player"),
   progressArea = video_player.querySelector(".progress-area"),
   bufferedBar = video_player.querySelector(".bufferedBar"),
   progress_Bar = video_player.querySelector(".progress-bar"),
-  fast_rewind = video_player.querySelector(".fast-rewind"),
+  rewind = video_player.querySelector(".fast-rewind"),
   play_pause = video_player.querySelector(".play_pause"),
   fast_forward = video_player.querySelector(".fast-forward"),
   volume = video_player.querySelector(".volume"),
@@ -27,6 +27,7 @@ const video_player = document.querySelector("#video_player"),
   tracks = video_player.querySelectorAll("track"),
   loader = video_player.querySelector(".loader")
 
+// Video Play Function
 function playVideo() {
   play_pause.innerHTML = "pause"
   play_pause.title = "pause"
@@ -34,6 +35,9 @@ function playVideo() {
   mainVideo.play()
 }
 
+console.dir(mainVideo)
+
+// Video pause function
 function pauseVideo() {
   play_pause.innerHTML = "play_arrow"
   play_pause.title = "play"
@@ -41,7 +45,18 @@ function pauseVideo() {
   mainVideo.pause()
 }
 
+// Play Pause function call based on video status
 play_pause.addEventListener("click", () => {
   const isPlayed = video_player.classList.contains("paused")
   isPlayed ? pauseVideo() : playVideo()
+})
+
+// First forward Function for 10 sec
+fast_forward.addEventListener("click", () => {
+  mainVideo.currentTime += 5
+})
+
+// Rewind Function for 10 sec
+rewind.addEventListener("click", () => {
+  mainVideo.currentTime -= 5
 })
